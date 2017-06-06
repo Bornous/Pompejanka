@@ -1,0 +1,141 @@
+
+			body
+			{
+				background-color: #79B8F7;
+				font-size: 24px;
+				color: black;
+			}
+			
+			h1{
+					text-align: center;
+					font-size: 35px;
+					color: white;
+					letter-spacing: 2px;
+				}
+				
+			/*Główny szkielet strony: */
+			
+			#contener{
+				margin-left: auto;
+				margin-right: auto;
+				padding: 2%;
+				width: 90%;			
+			}
+			
+			
+			#topbar{			
+				background-color: #2776C4;
+				/*min-height: 40px;*/
+				padding: 2%;
+				width: 100%;												
+				}
+				
+				#topmenu{
+				background-color: #2776C4;
+				padding: 2%;
+				margin-top: 1%;
+				height: 40%;
+				width: 100%;
+				}
+				
+			
+				#main{
+					margin-top: 10px;
+					margin-bottom: 10px;
+					margin-left: 10px;
+					float: left;
+					height: 50%;
+					width: 100%;
+				
+					padding: 5px;
+				}
+				
+				#footer{
+					margin-top: 5%;
+					width: 100%;
+					padding: 1%;
+					clear: both;
+					background-color: #072600;
+					color: white;
+					text-align: center;
+				}
+	/*Tabelka z wpisami*/
+				
+				.wiersz{
+					text-align:center;
+					margin-left:auto;
+					margin-right:auto;
+					height: 10%;
+					width: 90%;
+					border: 1px  solid black;
+				}
+				.data{
+					
+					width: 16%;
+					border-right: 1px  solid black;
+					float: left;
+				}
+				
+				.imie{
+					width: 48%;
+					border-right: 1px  solid black;
+					float: left;
+				}
+				
+				.czesc{
+					width: 35%;
+					float: left;
+				}
+				
+				.naglowek{
+					 font-weight: bold;
+					 background-color: white;
+				
+				}
+				
+				.green{
+				background-color: #2DCF33;
+				}
+				
+				.blue{
+				background-color: #2D59A1;
+				}
+				
+				
+				
+				
+				.green:hover{
+				font-weight: bold;
+				color: #F0EA39;
+				background-color: #307A24;
+				cursor: pointer;
+				}
+				
+				
+				
+				.dottedline{
+					height: 7px;
+					padding: 2px;
+					margin-bottom: 5px;
+					border-bottom: 2px dotted #444444;
+				
+				
+				}
+				
+				
+				a:visited{
+				color: yellow;	
+				text-decoration: none;
+				
+				}
+				
+				a{
+				color: white;	
+				text-decoration: none;
+								
+				}
+				
+				.endfloat{
+				clear:both;
+				}
+				

@@ -2,10 +2,38 @@
 
 	session_start();
 	require("daneDoPolaczenia.php");
-	$bazaDanych = new mysqli($host, $uzytkownik_bazy,$haslo_uzytkownika,$baza);
 	
+	if(isset($_GET['m'])){
+		$_SESSION['actualMonth']=$_GET['m'];
+	}
 	
+	if(isset($_SESSION['actualMonth'])){
+				
+		$bazaDanych = @new mysqli($host, $uzytkownik_bazy,$haslo_uzytkownika,$baza);
+		mysqli_query($bazaDanych,"SET NAMES UTF8");
+		
+		if ($bazaDanych->connect_errno!=0)
+			{
+					echo "Error: ".$bazaDanych->connect_errno;
+			}
+			
+		else
+			{ 	
+					$_SESSION['brakMiesiaca']=false;
+					if( $wczytaneDane = $bazaDanych->query("SELECT * FROM zapisy WHERE dataMonth='".$_SESSION['actualMonth']."' ") ){
+						if($wczytaneDane->num_rows==0){
+							$_SESSION['brakMiesiaca']=true;
+							
+						}
+					}
+					else{
+						//echo "Error przy pobieraniu danych z mysql!";
+					}
+
+				$bazaDanych->close();		
+			}
 	
+	}
 ?>
 <!DOCTYPE HTML>
 <html lang="pl">
@@ -21,7 +49,12 @@
 	
 </head>
 
-<body onload="pokazTabelke()">
+<body <?php 
+			if(!isset($_SESSION['actualMonth'])){
+				echo 'onload="ustawienieAktualnegoMiesiaca()"';
+				}
+
+?>>
 
 	
 	<div id="contener" >
@@ -31,9 +64,35 @@
 			<?php require("szkielet/topbar.php");?>
 			<?php require("szkielet/topmenu.php");?>
 			<div id="main"  >
-			
+				<div id="ErrorLog"><?php
+				if($_SESSION['brakMiesiaca']){
+					echo "Brak miesiaca";
+				}
+				
+				?>
+				</div>
 				<div class="dottedline" ></div>
-			
+				
+				
+				<?php
+				
+				if($_SESSION['brakMiesiaca']){
+					echo "<div id='nowyMiesiac' onclick='ToOtwarcie()'>Rozpocznij nowy miesiąc</div>";
+				}
+				else{
+					
+					foreach ( $wczytaneDane as $kafelek){
+						
+						?>
+							<div class="wiersz blue"> <div class="data" ><?php echo $kafelek['dataDay'];?></div><div class="imie"> </div><div class="czesc"> </div> <div class="endfloat"></div> </div> 
+						
+						<?php
+						
+						
+					}
+				}
+				
+				?>
 			
 			
 			</div>

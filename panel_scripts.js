@@ -57,6 +57,42 @@
 		}
 		document.getElementById("main").innerHTML=tabelka;
 	}
+		
+		function linkToOtwarcie(){
+			window.location.href="otwarcieNowegoMiesiaca.php";
+			
+			
+		}
+		
+				
+		function ToOtwarcie(){
+			
+					if (window.XMLHttpRequest) {
+						// code for IE7+, Firefox, Chrome, Opera, Safari
+						xmlhttp = new XMLHttpRequest();
+					} else {
+						// code for IE6, IE5
+						xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					xmlhttp.onreadystatechange = function ()	{
+							if(this.readyState == 4 && this.status ==200)	{
+									document.getElementById("ErrorLog").innerHTML = this.responseText;
+							}
+						};
+					
+					xmlhttp.open("GET","otwarcieNowegoMiesiaca.php?newM="+mies+"&year="+rok,true);
+					xmlhttp.send();
+				
+				
+				
+		
+		}
+		
+		function ustawienieAktualnegoMiesiaca(){
+				window.location.href="index.php?m="+mies;
+		}
+	
+	
 		/*
 	function zapisanie(var data){
 				

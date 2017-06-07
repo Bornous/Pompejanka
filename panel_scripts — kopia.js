@@ -2,7 +2,7 @@
 	var dzisiaj= new Date();	
 	var dzien = dzisiaj.getDate();
 	var dzien_tyg = dzisiaj.getDay();
-	var mies = dzisiaj.getmies();
+	var mies = dzisiaj.getMonth();
 	var rok = dzisiaj.getFullYear();
 
 	var dni = new Array("Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela");

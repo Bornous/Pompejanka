@@ -91,17 +91,14 @@
 		function ustawienieAktualnegoMiesiaca(){
 				window.location.href="index.php?m="+mies;
 		}
+		
+		
 	
-	
-		/*
-	function zapisanie(var data){
+	/*
+		
+	function zapisane(var day){
 				
-				if(data=="")	{
-				document.getElementById("Error").innerHTML= " NAstąpił niespodziewany błąd.";
-				return;
-				}	
-			else		{
-					
+								
 					if (window.XMLHttpRequest) {
 						// code for IE7+, Firefox, Chrome, Opera, Safari
 						xmlhttp2 = new XMLHttpRequest();
@@ -111,14 +108,14 @@
 					}
 					xmlhttp2.onreadystatechange = function ()	{
 							if(this.readyState == 4 && this.status ==200)	{
-									document.getElementById("Error").innerHTML = this.responseText;
+									window.location.href="index.php";
 							}
 						};
 					
-					xmlhttp2.open("GET","panel_ZmienZW_wczytajDane.php?ParafiaDoZnalezienia="+parafia,true); //do zmiany
+					xmlhttp2.open("GET","zapis.php?ParafiaDoZnalezienia="+parafia,true); //do zmiany
 					xmlhttp2.send();
-			}
+			
 				
 		
-	}*/
-	
+	}
+	*/

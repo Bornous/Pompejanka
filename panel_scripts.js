@@ -93,7 +93,7 @@
 		}
 		
 		function dajForm(id,day){
-			var formularz='<div class="formularz" >	<form action="zapisDoBazy.php?dataDay='+day+'&dataMonth='+mies+'&year='+rok+'" methot="POST" ><input type="number" value="'+id+'"/><div  class="nazwaPola">Imię:</div ><div  class="zawartosc"> <input  type="text" name="imie" /></div ><div  class=" class="nazwaPola">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko"   /></div ><div  class="nazwaPola">Email:</div ><div  class="zawartosc"> <input type="text" name="email"  /></div ><input class="przycisk" type="submit" value="ZAPISZ MNIE"  class="option"  /> </form>	</div>';
+			var formularz='<div class="formularz" >	<form action="zapisDoBazy.php" method="post" ><input class="hide" name="dataDay" type="number" value="'+day+'"/><input class="hide" name="dataMonth" type="number" value="'+mies+'"/><input class="hide" name="year" type="number" value="'+rok+'"/><input class="hide" name="id" type="number" value="'+id+'"/><div  class="nazwaPola">Imię:</div ><div  class="zawartosc"> <input  type="text" name="imie" /></div ><div  class=" class="nazwaPola">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko"   /></div ><div  class="nazwaPola">Email:</div ><div  class="zawartosc"> <input type="text" name="email"  /></div ><input class="przycisk" type="submit" value="ZAPISZ MNIE" /> </form>	</div>';
 			
 			var zeroDay="";
 			var zeroMonth="";

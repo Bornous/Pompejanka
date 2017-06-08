@@ -92,8 +92,22 @@
 				window.location.href="index.php?m="+mies;
 		}
 		
+		function dajForm(id,day){
+			var formularz='<div class="formularz" >	<form action="zapisDoBazy.php?dataDay='+day+'&dataMonth='+mies+'&year='+rok+'" methot="POST" ><input type="number" value="'+id+'"/><div  class="nazwaPola">Imię:</div ><div  class="zawartosc"> <input  type="text" name="imie" /></div ><div  class=" class="nazwaPola">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko"   /></div ><div  class="nazwaPola">Email:</div ><div  class="zawartosc"> <input type="text" name="email"  /></div ><input class="przycisk" type="submit" value="ZAPISZ MNIE"  class="option"  /> </form>	</div>';
+			
+			var zeroDay="";
+			var zeroMonth="";
+			
+			if(day<10)	zeroDay="0";
+			if(mies<10)	zeroMonth="0";
+			
+			var ktoryDzien='<div class="center">Zapisujesz się na :<div class="dataPrzyZapisie"> '+zeroDay+day+'-'+zeroMonth+mies+'-'+rok+' </div>Wpisz proszę swoje dane. <br/>Adres email bedzie wykorzystany tylko przy wysłaniu przypomnienia w dniu, na który się zapisujesz.</div>';
+			
+			document.getElementById("main").innerHTML=formularz;
+			document.getElementById("topmenu").innerHTML=ktoryDzien;
+		}
 		
-	
+		
 	/*
 		
 	function zapisane(var day){

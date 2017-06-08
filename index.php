@@ -38,7 +38,7 @@
 <!DOCTYPE HTML>
 <html lang="pl">
 <head>
-	<meta charset="utf8" />
+	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>Pompejanka</title>
 	<script src="jquery/jquery-1.11.1.min.js"></script>
@@ -64,6 +64,7 @@
 			<?php require("szkielet/topbar.php");?>
 			<?php require("szkielet/topmenu.php");?>
 			<div id="main"  >
+				<div class="dottedline" ></div>
 				<div id="ErrorLog"><?php
 				if($_SESSION['brakMiesiaca']){
 					echo "Brak miesiaca";
@@ -82,11 +83,11 @@
 				else{
 					echo '<div class="wiersz naglowek"> <div class="data" > Data </div><div class="imie"> Imię i nazwisko </div><div class="czesc">Część błagalna lub dziękczynna </div> <div class="endfloat"></div> </div>';
 					foreach ( $wczytaneDane as $kafelek){
-						
-						if( $kafelek['dataDay']<10) 	$kafelek['dataDay']= "0".$kafelek['dataDay'];
+						$zeroDay="";
+						if( $kafelek['dataDay']<10) 	$zeroDay= "0";
 						if( $kafelek['dataMonth']<10) $kafelek['dataMonth']="0".$kafelek['dataMonth'];
 						?>
-							<div <?php if($kafelek['imie']==' ')echo 'class="wiersz green"'; else echo 'class="wiersz blue"'; echo "value='".$kafelek['dataDay']."'"?> onclick="zapis()" > <div class="data" ><?php echo $kafelek['dataDay']."-".$kafelek['dataMonth']."-".$kafelek['dataYear'];?></div><div class="imie"><?php if($kafelek['imie']==' ')echo "Wolny dzień - można się zapisać!";echo $kafelek['imie']." ".$kafelek['nazwisko'];?> </div><div class="czesc"> <?php if($kafelek['numerPomp']<=27)echo "Błagalna"; else echo "Dziękczynna";?></div> <div class="endfloat"></div> </div> 
+							<div <?php if($kafelek['imie']==' ')echo 'class="wiersz green"'; else echo 'class="wiersz blue"' ;echo " data-id='".$kafelek['id_dnia']."' data-value='".$kafelek['id_dnia']; if($kafelek['imie']==' '){?> onclick="dajForm(this.getAttribute('data-id'),this.getAttribute('data-value'))" <?php }?>> <div class="data" ><?php echo $zeroDay.$kafelek['dataDay']."-".$kafelek['dataMonth']."-".$kafelek['dataYear'];?></div><div class="imie"><?php if($kafelek['imie']==' ')echo "Wolny dzień - można się zapisać!";echo $kafelek['imie']." ".$kafelek['nazwisko'];?> </div><div class="czesc"> <?php if($kafelek['numerPomp']<=27)echo "Błagalna"; else echo "Dziękczynna";?></div> <div class="endfloat"></div> </div> 
 						
 						<?php
 						

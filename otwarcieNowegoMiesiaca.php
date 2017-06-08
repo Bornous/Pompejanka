@@ -19,7 +19,7 @@
 		}
 		
 					
-		$bazaDanych = new mysqli($host, $uzytkownik_bazy,$haslo_uzytkownika,$baza);
+		$bazaDanych = @new mysqli($host, $uzytkownik_bazy,$haslo_uzytkownika,$baza);
 		mysqli_query($bazaDanych,"SET NAMES UTF8");
 		
 		if ($bazaDanych->connect_errno!=0)

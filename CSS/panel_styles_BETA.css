@@ -123,6 +123,42 @@
 				
 				}
 				
+		/* Formularz */
+				.formularz{
+					text-align:center;
+					
+				}
+				
+				.nazwaPola{
+					
+				
+				}
+				
+				.zawartosc{
+					
+				
+				}
+				
+				.dataPrzyZapisie{
+					font-size: 35px;
+					color: orange;
+					font-weight: bold;
+				}
+				
+				.przycisk{
+					/*font-weight: bold;
+					font-size: 15px;*/
+					background-color: #2776C4;
+				
+				}
+				
+				.center{
+					text-align:center;
+				}
+				
+				
+				
+				
 				
 				a:visited{
 				color: yellow;	

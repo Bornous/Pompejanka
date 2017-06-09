@@ -40,6 +40,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Pompejanka</title>
 	<script src="jquery/jquery-1.11.1.min.js"></script>
 	<script src="panel_scripts.js"></script>
@@ -63,7 +64,7 @@
 			<?php require("szkielet/nieuzupelnione.php");?>
 			<?php require("szkielet/topbar.php");?>
 			<?php require("szkielet/topmenu.php");?>
-			<div id="main"  >
+			<div id="main" class="fontsize" >
 				<div class="dottedline" ></div>
 				<div id="ErrorLog"><?php
 				if($_SESSION['brakMiesiaca']){

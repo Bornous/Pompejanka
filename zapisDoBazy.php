@@ -16,7 +16,7 @@
 <?php
 	session_start();
 	require_once "daneDoPolaczenia.php";
-	if(isset($_POST['dataMonth'])){
+	if(isset($_POST['dataMonth']) && $_POST['imie']!='' && $_POST['nazwisko']!=''){
 		
 		$dzien=$_POST['dataDay'];
 		$Miesiac=$_POST['dataMonth'];
@@ -51,10 +51,10 @@
 				$bazaDanych->close();	
 			}
 		
-		header('Location: index.php');
+		
 		
 	}
-
+	header('Location: index.php');
 	
 ?>
 </body>

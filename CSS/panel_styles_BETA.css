@@ -8,7 +8,7 @@
 			
 			h1{
 					text-align: center;
-					font-size: 35px;
+					font-size: 60px;
 					color: white;
 					letter-spacing: 2px;
 				}
@@ -60,15 +60,108 @@
 					text-align: center;
 				}
 	/*Tabelka z wpisami*/
-				
-				.wiersz{
-					text-align:center;
-					margin-left:auto;
-					margin-right:auto;
-					height: 10%;
-					width: 90%;
-					border: 1px  solid black;
+	
+				@media only screen and (max-width: 460px) {
+					.wiersz{
+						text-align:center;
+						margin-left:auto;
+						margin-right:auto;
+						height: 10%;
+						width: 90%;
+						border: 1px  solid black;
+						
+					}
+					
+					.fontsize{
+						font-size:30%;
+					}
+					
+					.TytulFontsize{
+						font-size:10px;
+					}
+					
 				}
+					
+				@media only screen and (min-width:460px) and (max-width: 670px) {
+					.wiersz{
+						text-align:center;
+						margin-left:auto;
+						margin-right:auto;
+						height: 10%;
+						width: 90%;
+						border: 1px  solid black;
+						
+					}
+					
+					.fontsize{
+						font-size:40%;
+					}
+					.TytulFontsize{
+						font-size:15px;
+					}
+				}
+					
+				@media only screen and (min-width:670px) and (max-width: 790px) {
+					.wiersz{
+						text-align:center;
+						margin-left:auto;
+						margin-right:auto;
+						height: 10%;
+						width: 90%;
+						border: 1px  solid black;
+						
+					}
+					
+					.fontsize{
+						font-size:60%;
+					}
+					
+					.TytulFontsize{
+						font-size:25px;
+					}
+				}
+	
+				@media only screen  and (min-width:790px) and (max-width: 1160px)  {
+					.wiersz{
+						text-align:center;
+						margin-left:auto;
+						margin-right:auto;
+						height: 10%;
+						width: 90%;
+						border: 1px  solid black;
+						
+					}
+					
+					.fontsize{
+						font-size:70%;
+					}
+					
+					.TytulFontsize{
+						font-size:30px;
+					}
+				}
+				
+				@media only screen and (min-width: 1160px) {
+					.wiersz{
+						text-align:center;
+						margin-left:auto;
+						margin-right:auto;
+						height: 10%;
+						width: 90%;
+						border: 1px  solid black;
+						
+					}
+					
+					.fontsize{
+						font-size:100%;
+					}
+					
+					.TytulFontsize{
+						font-size:35px;
+					}
+				}
+				
+				
 				.data{
 					
 					width: 16%;

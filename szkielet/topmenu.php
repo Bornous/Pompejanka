@@ -1,4 +1,4 @@
-	<div id="topmenu"  >
+	<div id="topmenu"  class="fontsize">
 			Drodzy Oazowicze! <br>
 			Hasło i znak nowego roku formacyjnego - Sługa Niepokalanej - to dla nas zadanie i wezwanie, które pragniemy podjąć z radością i wcielić w życie zarówno nasze osobiste, jak i naszych wspólnot. Dlatego wychodzimy do propozycją konkretnej modlitwy i zawierzenia Matce Najświętszej całego Ruchu Światło-Życie, szczególnie w naszej archidiecezji. 
 			Proponujemy, aby w tym czasie przez okrągły rok modlić sie Nowenną Pompejańską.<br><br>

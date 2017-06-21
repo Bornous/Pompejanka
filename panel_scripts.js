@@ -74,11 +74,11 @@
 						// code for IE6, IE5
 						xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 					}
-					xmlhttp.onreadystatechange = function ()	{
+					/*xmlhttp.onreadystatechange = function ()	{
 							if(this.readyState == 4 && this.status ==200)	{
 									document.getElementById("ErrorLog").innerHTML = this.responseText;
 							}
-						};
+						};*/
 					
 					xmlhttp.open("GET","otwarcieNowegoMiesiaca.php?newM="+mies+"&year="+rok,true);
 					xmlhttp.send();
@@ -88,8 +88,31 @@
 		
 		}
 		
+		function ToOtwarcie2(){
+			
+					if (window.XMLHttpRequest) {
+						// code for IE7+, Firefox, Chrome, Opera, Safari
+						xmlhttp = new XMLHttpRequest();
+					} else {
+						// code for IE6, IE5
+						xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					/*xmlhttp.onreadystatechange = function ()	{
+							if(this.readyState == 4 && this.status ==200)	{
+									document.getElementById("ErrorLog").innerHTML = this.responseText;
+							}
+						};*/
+					var kolejnyMies=mies+1;
+					xmlhttp.open("GET","otwarcieNowegoMiesiaca.php?newM="+kolejnyMies+"&year="+rok,true);
+					xmlhttp.send();
+				
+				
+				
+		
+		}
+		
 		function ustawienieAktualnegoMiesiaca(){
-				window.location.href="index.php?m="+mies;
+				window.location.href="index.php?m="+mies+"&d="+dzien;
 		}
 		
 		function dajForm(id,day){
@@ -107,6 +130,17 @@
 			document.getElementById("topmenu").innerHTML=ktoryDzien;
 		}
 		
+		
+		
+		var counter=0;
+		function countF(){
+				if(counter>3){
+					window.location.href="admin.php?m="+mies;
+					counter=0;
+				}
+				else counter++;
+		}
+	
 		
 	/*
 		

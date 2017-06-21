@@ -5,6 +5,7 @@
 	
 	if(isset($_GET['m'])){
 		$_SESSION['actualMonth']=$_GET['m'];
+		$_SESSION['actualDay']=$_GET['d'];
 	}
 	
 	if(isset($_SESSION['actualMonth'])){
@@ -20,16 +21,29 @@
 		else
 			{ 	
 					$_SESSION['brakMiesiaca']=false;
-					if( $wczytaneDane = $bazaDanych->query("SELECT * FROM zapisy WHERE dataMonth='".$_SESSION['actualMonth']."' ") ){
-						if($wczytaneDane->num_rows==0){
-							$_SESSION['brakMiesiaca']=true;
-							
+					if($_SESSION['actualDay']>=20){
+						$kolejnyMies=$_SESSION['actualMonth']+1;
+						if( $wczytaneDane = $bazaDanych->query("SELECT * FROM zapisy WHERE dataMonth='".$_SESSION['actualMonth']."' OR dataMonth='".$kolejnyMies."' ") ){
+							if($wczytaneDane->num_rows==0){
+								$_SESSION['brakMiesiaca']=true;
+								
+							}
+						}
+						else{
+							//echo "Error przy pobieraniu danych z mysql!";
 						}
 					}
 					else{
-						//echo "Error przy pobieraniu danych z mysql!";
+						if( $wczytaneDane = $bazaDanych->query("SELECT * FROM zapisy WHERE dataMonth='".$_SESSION['actualMonth']."' ") ){
+							if($wczytaneDane->num_rows==0){
+								$_SESSION['brakMiesiaca']=true;
+								
+							}
+						}
+						else{
+							//echo "Error przy pobieraniu danych z mysql!";
+						}
 					}
-
 				$bazaDanych->close();		
 			}
 	
@@ -42,7 +56,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Pompejanka</title>
-	<script src="jquery/jquery-1.11.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="panel_scripts.js"></script>
 	<link href="CSS/panel_styles_BETA.css" rel="stylesheet" type="text/css">
 	
@@ -65,7 +79,7 @@
 			<?php require("szkielet/topbar.php");?>
 			<?php require("szkielet/topmenu.php");?>
 			<div id="main" class="fontsize" >
-				<div class="dottedline" ></div>
+				<?php /*<div class="dottedline" ></div>
 				<div id="ErrorLog"><?php
 				if($_SESSION['brakMiesiaca']){
 					echo "Brak miesiaca";
@@ -76,23 +90,26 @@
 				<div class="dottedline" ></div>
 				
 				
-				<?php
+				<?php*/
 				
 				if($_SESSION['brakMiesiaca']){
 					echo "<div id='nowyMiesiac' onclick='ToOtwarcie()'>Rozpocznij nowy miesiąc</div>";
 				}
 				else{
 					echo '<div class="wiersz naglowek"> <div class="data" > Data </div><div class="imie"> Imię i nazwisko </div><div class="czesc">Część błagalna lub dziękczynna </div> <div class="endfloat"></div> </div>';
+					$numerPetli=1;
 					foreach ( $wczytaneDane as $kafelek){
-						$zeroDay="";
-						if( $kafelek['dataDay']<10) 	$zeroDay= "0";
-						if( $kafelek['dataMonth']<10) $kafelek['dataMonth']="0".$kafelek['dataMonth'];
-						?>
-							<div <?php if($kafelek['imie']==' ')echo 'class="wiersz green"'; else echo 'class="wiersz blue"' ;echo " data-id='".$kafelek['id_dnia']."' data-value='".$kafelek['id_dnia']."'"; if($kafelek['imie']==' '){?> onclick="dajForm(this.getAttribute('data-id'),this.getAttribute('data-value'))" <?php }?>> <div class="data" ><?php echo $zeroDay.$kafelek['dataDay']."-".$kafelek['dataMonth']."-".$kafelek['dataYear'];?></div><div class="imie"><?php if($kafelek['imie']==' ')echo "Wolny dzień - można się zapisać!";echo $kafelek['imie']." ".$kafelek['nazwisko'];?> </div><div class="czesc"> <?php if($kafelek['numerPomp']<=27)echo "Błagalna"; else echo "Dziękczynna";?></div> <div class="endfloat"></div> </div> 
-						
-						<?php
-						
-						
+						if($_SESSION['actualDay']<20 OR ($_SESSION['actualDay']>=20 AND $numerPetli>=15)){
+								$zeroDay="";
+								if( $kafelek['dataDay']<10) 	$zeroDay= "0";
+								if( $kafelek['dataMonth']<10) $kafelek['dataMonth']="0".$kafelek['dataMonth'];
+								?>
+									<div <?php if($kafelek['imie']==' ')echo 'class="wiersz green"'; else echo 'class="wiersz blue"' ;echo " data-id='".$kafelek['id_dnia']."' data-value='".$kafelek['id_dnia']."'"; if($kafelek['imie']==' '){?> onclick="dajForm(this.getAttribute('data-id'),this.getAttribute('data-value'))" <?php }?>> <div class="data" ><?php echo $zeroDay.$kafelek['dataDay']."-".$kafelek['dataMonth']."-".$kafelek['dataYear'];?></div><div class="imie"><?php if($kafelek['imie']==' ')echo "Wolny dzień - można się zapisać!";echo $kafelek['imie']." ".$kafelek['nazwisko'];?> </div><div class="czesc"> <?php if($kafelek['numerPomp']<=27)echo "Błagalna"; else echo "Dziękczynna";?></div> <div class="endfloat"></div> </div> 
+								
+								<?php
+								
+						}
+						$numerPetli++;
 					}
 				}
 				

@@ -1,5 +1,5 @@
-<div id="footer" class="fontsize">
+<div id="footer" class="fontsize" onclick="countF()">
 	
-			©  Ruchu Światło-Życie. Kontakt w razie problemów ze stroną: pavelgra77@gmail.com
+			©  Ruch Światło-Życie. Kontakt w razie problemów ze stroną: pavelgra77@gmail.com
 
 		</div>

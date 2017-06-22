@@ -65,7 +65,7 @@
 		}
 		
 		function goHome(){
-			window.location.href="index.php?m="+mies+"&d="+dzien;
+			window.location.href="index.php?m="+mies+"&d="+dzien+"&y="+rok;
 			
 			
 		}
@@ -118,7 +118,11 @@
 		}
 		
 		function ustawienieAktualnegoMiesiaca(){
-				window.location.href="index.php?m="+mies+"&d="+dzien;
+				window.location.href="index.php?m="+mies+"&d="+dzien+"&y="+rok;
+		}
+		
+		function ustawienieAktualnegoMiesiacaAdmin(){
+				window.location.href="admin.php?m="+mies+"&d="+dzien+"&y="+rok;
 		}
 		
 		function dajForm(id,daySign,monthSign,yearSign){

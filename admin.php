@@ -4,9 +4,12 @@
 	require("daneDoPolaczenia.php");
 	if($_POST["haslo"]!="Tamara48@")header('Location: index.php');
 	
-	if(isset($_GET['m'])){
+	if(isset($_GET['m']) AND isset($_GET['d']) AND isset($_GET['y'])){
 		$_SESSION['actualMonth']=$_GET['m'];
+		$_SESSION['actualDay']=$_GET['d'];
+		$_SESSION['actualYear']=$_GET['y'];
 	}
+	else { if( !isset($_SESSION['actualMonth'])  OR !isset($_SESSION['actualDay']) OR !isset($_SESSION['actualYear'])) header('Location: index.php');}
 	
 	if(isset($_SESSION['actualMonth'])){
 				
@@ -22,6 +25,8 @@
 			{ 	
 					$_SESSION['brakMiesiaca']=false;
 					$_SESSION['brakKolejnegoMiesiaca']=false;
+					$_SESSION['brakDnia']=false;
+					$_SESSION['manyDays']=false;
 					$kolejnyMiesiac=$_SESSION['actualMonth']+1;
 					if( $wczytaneDane = $bazaDanych->query("SELECT * FROM zapisy WHERE dataMonth='".$_SESSION['actualMonth']."' ") ){
 						if($wczytaneDane->num_rows==0){
@@ -29,16 +34,26 @@
 							
 						}
 					}
-					if( $wczytaneDane = $bazaDanych->query("SELECT * FROM zapisy WHERE dataMonth='".$kolejnyMiesiac."' ") ){
-						if($wczytaneDane->num_rows==0){
+					if( $wczytaneDane2 = $bazaDanych->query("SELECT * FROM zapisy WHERE dataMonth='".$kolejnyMiesiac."' ") ){
+						if($wczytaneDane2->num_rows==0){
 							$_SESSION['brakKolejnegoMiesiaca']=true;
 							
 						}
 					}
 				
 					
+					if( $wczytaneDane3 = $bazaDanych->query("SELECT * FROM zapisy WHERE dataDay='".$_SESSION['actualDay']."' AND dataMonth='".$_SESSION['actualMonth']."' AND dataYear='".$_SESSION['actualYear']."'   ") ){
+						if($wczytaneDane3->num_rows==0){
+							$_SESSION['brakDnia']=true;
+							
+						}
+						if($wczytaneDane3->num_rows>1){
+							$_SESSION['manyDays']=true;
+						}
+					}
+					else echo"Cos nie halo";
 
-				$bazaDanych->close();		
+				
 			}
 	
 	}
@@ -59,8 +74,8 @@
 </head>
 
 <body <?php 
-			if(!isset($_SESSION['actualMonth'])){
-				echo 'onload="ustawienieAktualnegoMiesiaca()"';
+			if(!isset($_SESSION['actualMonth']) OR !isset($_SESSION['actualDay']) OR !isset($_SESSION['actualYear'])){
+				echo 'onload="ustawienieAktualnegoMiesiacaAdmin()"';
 				}
 
 ?>>
@@ -73,26 +88,32 @@
 			<?php require("szkielet/topbar.php");?>
 			<?php require("szkielet/topmenu.php");?>
 			<div id="main" class="fontsize" >
-				<?php /*<div class="dottedline" ></div>
-				<div id="ErrorLog"><?php
-				if($_SESSION['brakMiesiaca']){
-					echo "Brak miesiaca";
-				}
+				<?php echo "<div>";
+							if($_SESSION['manyDays']==false AND $_SESSION['brakDnia']==false){
+								foreach($wczytaneDane3 as $rekord){
+										if( $wczytaneDaneMailowe = $bazaDanych->query("SELECT * FROM mailing WHERE id_dnia='".$rekord['id_dnia']."' ") ){
+												if($wczytaneDaneMailowe->num_rows==0){
+												echo "Mail nie zostal wyslany i nie bylo proby wyslania go.";
+								
+												}
+												else{
+													echo "Byla proba wyslania maila. Nie wiem jeszcze z jakim skutkiem.";
+												}
+										}
+								}
+							}
+							else echo "Cos nie tak z wyszukiwaniem dnia.";
+							
 				
-				?>
-				</div>
-				<div class="dottedline" ></div>
-				
-				
-				<?php*/
+				echo "</div><div>";
 				
 				if($_SESSION['brakMiesiaca']) echo "<div id='nowyMiesiac' onclick='ToOtwarcie()'>Nie utworzono jeszcze bierzącego miesiąca</div>";
 				
 			
 				if($_SESSION['brakKolejnegoMiesiaca'])echo "<br/><div id='nowyMiesiac' onclick='ToOtwarcie2()'>Utwórz kolejny miesiąc</div>";
-			
+				echo "</div>";
 				
-				
+				$bazaDanych->close();		
 				?>
 			
 			

@@ -3,9 +3,10 @@
 	session_start();
 	require("daneDoPolaczenia.php");
 	
-	if(isset($_GET['m'])){
+	if(isset($_GET['m']) AND isset($_GET['d']) AND isset($_GET['y'])){
 		$_SESSION['actualMonth']=$_GET['m'];
 		$_SESSION['actualDay']=$_GET['d'];
+		$_SESSION['actualYear']=$_GET['y'];
 	}
 	
 	if(isset($_SESSION['actualMonth'])){
@@ -65,7 +66,7 @@
 </head>
 
 <body <?php 
-			if(!isset($_SESSION['actualMonth'])){
+			if(!isset($_SESSION['actualMonth']) OR !isset($_SESSION['actualDay']) OR !isset($_SESSION['actualYear'])){
 				echo 'onload="ustawienieAktualnegoMiesiaca()"';
 				}
 

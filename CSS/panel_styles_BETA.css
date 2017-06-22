@@ -281,6 +281,15 @@
 				
 				}
 				
+				.przycisk:hover{
+				cursor: pointer;
+				}
+				
+				.przycisk{
+					margin-left:auto;
+					margin-right:auto;
+				}
+				
 				.center{
 					text-align:center;
 				}

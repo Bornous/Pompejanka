@@ -104,7 +104,7 @@
 								if( $kafelek['dataDay']<10) 	$zeroDay= "0";
 								if( $kafelek['dataMonth']<10) $kafelek['dataMonth']="0".$kafelek['dataMonth'];
 								?>
-									<div <?php if($kafelek['imie']==' ')echo 'class="wiersz green"'; else echo 'class="wiersz blue"' ;echo " data-id='".$kafelek['id_dnia']."' data-value='".$kafelek['id_dnia']."'"; if($kafelek['imie']==' '){?> onclick="dajForm(this.getAttribute('data-id'),this.getAttribute('data-value'))" <?php }?>> <div class="data" ><?php echo $zeroDay.$kafelek['dataDay']."-".$kafelek['dataMonth']."-".$kafelek['dataYear'];?></div><div class="imie"><?php if($kafelek['imie']==' ')echo "Wolny dzień - można się zapisać!";echo $kafelek['imie']." ".$kafelek['nazwisko'];?> </div><div class="czesc"> <?php if($kafelek['numerPomp']<=27)echo "Błagalna"; else echo "Dziękczynna";?></div> <div class="endfloat"></div> </div> 
+									<div <?php if($kafelek['imie']==' ')echo 'class="wiersz green"'; else echo 'class="wiersz blue"' ;echo " data-id='".$kafelek['id_dnia']."' data-value='".$kafelek['dataDay']."' month-value='".$kafelek['dataMonth']."' year-value='".$kafelek['dataYear']."' "; if($kafelek['imie']==' '){?> onclick="dajForm(this.getAttribute('data-id'),this.getAttribute('data-value'),this.getAttribute('month-value'),this.getAttribute('year-value'))" <?php }?>> <div class="data" ><?php echo $zeroDay.$kafelek['dataDay']."-".$kafelek['dataMonth']."-".$kafelek['dataYear'];?></div><div class="imie"><?php if($kafelek['imie']==' ')echo "Wolny dzień - można się zapisać!";echo $kafelek['imie']." ".$kafelek['nazwisko'];?> </div><div class="czesc"> <?php if($kafelek['numerPomp']<=27)echo "Błagalna"; else echo "Dziękczynna";?></div> <div class="endfloat"></div> </div> 
 								
 								<?php
 								

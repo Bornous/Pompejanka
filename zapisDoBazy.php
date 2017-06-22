@@ -37,7 +37,7 @@
 			
 		else
 			{ 
-					echo "Udalo sie polaczy z baza";
+					
 						$zapytanie="UPDATE zapisy SET imie='".$imie."',nazwisko='".$nazwisko."',email='".$email."' WHERE id_dnia='".$id_dnia."' ";
 						$sukcesy=0;
 						if($bazaDanych->query($zapytanie) ){

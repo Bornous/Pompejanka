@@ -2,6 +2,7 @@
 
 	session_start();
 	require("daneDoPolaczenia.php");
+	if($_POST["haslo"]!="Tamara48@")header('Location: index.php');
 	
 	if(isset($_GET['m'])){
 		$_SESSION['actualMonth']=$_GET['m'];
@@ -20,15 +21,22 @@
 		else
 			{ 	
 					$_SESSION['brakMiesiaca']=false;
+					$_SESSION['brakKolejnegoMiesiaca']=false;
+					$kolejnyMiesiac=$_SESSION['actualMonth']+1;
 					if( $wczytaneDane = $bazaDanych->query("SELECT * FROM zapisy WHERE dataMonth='".$_SESSION['actualMonth']."' ") ){
 						if($wczytaneDane->num_rows==0){
 							$_SESSION['brakMiesiaca']=true;
 							
 						}
 					}
-					else{
-						//echo "Error przy pobieraniu danych z mysql!";
+					if( $wczytaneDane = $bazaDanych->query("SELECT * FROM zapisy WHERE dataMonth='".$kolejnyMiesiac."' ") ){
+						if($wczytaneDane->num_rows==0){
+							$_SESSION['brakKolejnegoMiesiaca']=true;
+							
+						}
 					}
+				
+					
 
 				$bazaDanych->close();		
 			}
@@ -78,11 +86,10 @@
 				
 				<?php*/
 				
-				if($_SESSION['brakMiesiaca']){
-					echo "<div id='nowyMiesiac' onclick='ToOtwarcie()'>Nie utworzono jeszcze bierzącego miesiąca</div>";
-				}
-				echo "<br/>";
-				echo "<div id='nowyMiesiac' onclick='ToOtwarcie2()'>Utwórz kolejny miesiąc</div>";
+				if($_SESSION['brakMiesiaca']) echo "<div id='nowyMiesiac' onclick='ToOtwarcie()'>Nie utworzono jeszcze bierzącego miesiąca</div>";
+				
+			
+				if($_SESSION['brakKolejnegoMiesiaca'])echo "<br/><div id='nowyMiesiac' onclick='ToOtwarcie2()'>Utwórz kolejny miesiąc</div>";
 			
 				
 				

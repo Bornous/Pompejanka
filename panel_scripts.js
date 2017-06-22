@@ -64,6 +64,12 @@
 			
 		}
 		
+		function goHome(){
+			window.location.href="index.php?m="+mies+"&d="+dzien;
+			
+			
+		}
+		
 				
 		function ToOtwarcie(){
 			
@@ -115,16 +121,16 @@
 				window.location.href="index.php?m="+mies+"&d="+dzien;
 		}
 		
-		function dajForm(id,day){
-			var formularz='<div class="formularz" >	<form action="zapisDoBazy.php" method="post" ><input class="hide" name="dataDay" type="number" value="'+day+'"/><input class="hide" name="dataMonth" type="number" value="'+mies+'"/><input class="hide" name="year" type="number" value="'+rok+'"/><input class="hide" name="id" type="number" value="'+id+'"/><div  class="nazwaPola FormFontsize">Imię:</div ><div  class="zawartosc"> <input  type="text" name="imie" /></div ><div class="nazwaPola FormFontsize">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko"   /></div ><div  class="nazwaPola FormFontsize">Email:</div ><div  class="zawartosc"> <input type="text" name="email"  /></div ><br/><input class="przycisk FormFontsize" type="submit" value="ZAPISZ MNIE" /> </form>	</div>';
+		function dajForm(id,daySign,monthSign,yearSign){
+			var formularz='<div class="formularz" >	<form action="zapisDoBazy.php" method="post" ><input class="hide" name="dataDay" type="number" value="'+daySign+'"/><input class="hide" name="dataMonth" type="number" value="'+monthSign+'"/><input class="hide" name="year" type="number" value="'+yearSign+'"/><input class="hide" name="id" type="number" value="'+id+'"/><div  class="nazwaPola FormFontsize">Imię:</div ><div  class="zawartosc"> <input  type="text" name="imie" /></div ><div class="nazwaPola FormFontsize">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko"   /></div ><div  class="nazwaPola FormFontsize">Email:</div ><div  class="zawartosc"> <input type="text" name="email"  /></div ><br/><input class="przycisk FormFontsize" type="submit" value="ZAPISZ MNIE" /> <br/><br/> <div class="przycisk FormFontsize przyciskGoHome" onclick="goHome()">Wróć do głównej strony</div> </form>	</div>';
 			
 			var zeroDay="";
-			var zeroMonth="";
+			//var zeroMonth="";
 			
-			if(day<10)	zeroDay="0";
-			if(mies<10)	zeroMonth="0";
+			if(daySign<10)	zeroDay="0";
+			//if(monthSign<10)	zeroMonth="0";
 			
-			var ktoryDzien='<div class="center">Zapisujesz się na :<div class="dataPrzyZapisie"> '+zeroDay+day+'-'+zeroMonth+mies+'-'+rok+' </div>Wpisz proszę swoje dane. <br/>Adres email bedzie wykorzystany tylko przy wysłaniu przypomnienia w dniu, na który się zapisujesz.</div>';
+			var ktoryDzien='<div class="center">Zapisujesz się na :<div class="dataPrzyZapisie"> '+zeroDay+daySign+'-'+monthSign+'-'+yearSign+' </div>Wpisz proszę swoje dane. <br/>Adres email bedzie wykorzystany tylko przy wysłaniu przypomnienia w dniu, na który się zapisujesz.</div>';
 			
 			document.getElementById("main").innerHTML=formularz;
 			document.getElementById("topmenu").innerHTML=ktoryDzien;
@@ -135,8 +141,9 @@
 		var counter=0;
 		function countF(){
 				if(counter>3){
-					window.location.href="admin.php?m="+mies;
 					counter=0;
+					window.location.href="logowanie.php";
+				
 				}
 				else counter++;
 		}

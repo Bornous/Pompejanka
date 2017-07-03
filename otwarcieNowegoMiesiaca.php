@@ -32,8 +32,7 @@
 					echo "Udalo sie polaczy z baza";
 					if( $wczytaneDane = $bazaDanych->query("SELECT * FROM zapisy ") ){
 						$iloscWynikow=$wczytaneDane->num_rows;
-						if($iloscWynikow%54==0)	$dzienPompejanki=1;
-						else										$dzienPompejanki=$iloscWynikow+1;
+						$dzienPompejanki=($iloscWynikow%54)+1;
 						echo " i wyszukac rekordy: ".$iloscWynikow." petla: ";
 					}
 					else{

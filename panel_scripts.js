@@ -57,15 +57,107 @@
 		}
 		document.getElementById("main").innerHTML=tabelka;
 	}
-		/*
-	function zapisanie(var data){
+		
+		function linkToOtwarcie(){
+			window.location.href="otwarcieNowegoMiesiaca.php";
+			
+			
+		}
+		
+		function goHome(){
+			window.location.href="index.php?m="+mies+"&d="+dzien+"&y="+rok;
+			
+			
+		}
+		
 				
-				if(data=="")	{
-				document.getElementById("Error").innerHTML= " NAstąpił niespodziewany błąd.";
-				return;
-				}	
-			else		{
+		function ToOtwarcie(){
+			
+					if (window.XMLHttpRequest) {
+						// code for IE7+, Firefox, Chrome, Opera, Safari
+						xmlhttp = new XMLHttpRequest();
+					} else {
+						// code for IE6, IE5
+						xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					/*xmlhttp.onreadystatechange = function ()	{
+							if(this.readyState == 4 && this.status ==200)	{
+									document.getElementById("ErrorLog").innerHTML = this.responseText;
+							}
+						};*/
 					
+					xmlhttp.open("GET","otwarcieNowegoMiesiaca.php?newM="+mies+"&year="+rok,true);
+					xmlhttp.send();
+				
+				
+				
+		
+		}
+		
+		function ToOtwarcie2(){
+			
+					if (window.XMLHttpRequest) {
+						// code for IE7+, Firefox, Chrome, Opera, Safari
+						xmlhttp = new XMLHttpRequest();
+					} else {
+						// code for IE6, IE5
+						xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					/*xmlhttp.onreadystatechange = function ()	{
+							if(this.readyState == 4 && this.status ==200)	{
+									document.getElementById("ErrorLog").innerHTML = this.responseText;
+							}
+						};*/
+					var kolejnyMies=mies+1;
+					xmlhttp.open("GET","otwarcieNowegoMiesiaca.php?newM="+kolejnyMies+"&year="+rok,true);
+					xmlhttp.send();
+				
+				
+				
+		
+		}
+		
+		function ustawienieAktualnegoMiesiaca(){
+				window.location.href="index.php?m="+mies+"&d="+dzien+"&y="+rok;
+		}
+		
+		function ustawienieAktualnegoMiesiacaAdmin(){
+				window.location.href="admin.php?m="+mies+"&d="+dzien+"&y="+rok;
+		}
+		
+		function dajForm(id,daySign,monthSign,yearSign){
+			var formularz='<div class="formularz" >	<form action="zapisDoBazy.php" method="post" ><input class="hide" name="dataDay" type="number" value="'+daySign+'"/><input class="hide" name="dataMonth" type="number" value="'+monthSign+'"/><input class="hide" name="year" type="number" value="'+yearSign+'"/><input class="hide" name="id" type="number" value="'+id+'"/><div  class="nazwaPola FormFontsize">Imię:</div ><div  class="zawartosc"> <input  type="text" name="imie" /></div ><div class="nazwaPola FormFontsize">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko"   /></div ><div  class="nazwaPola FormFontsize">Email:</div ><div  class="zawartosc"> <input type="text" name="email"  /></div ><br/><input class="przycisk FormFontsize" type="submit" value="ZAPISZ MNIE" /> <br/><br/> <div class="przycisk FormFontsize przyciskGoHome" onclick="goHome()">Wróć do głównej strony</div> </form>	</div>';
+			
+			var zeroDay="";
+			//var zeroMonth="";
+			
+			if(daySign<10)	zeroDay="0";
+			//if(monthSign<10)	zeroMonth="0";
+			
+			var ktoryDzien='<div class="center">Zapisujesz się na :<div class="dataPrzyZapisie"> '+zeroDay+daySign+'-'+monthSign+'-'+yearSign+' </div>Wpisz proszę swoje dane. <br/>Adres email bedzie wykorzystany tylko przy wysłaniu przypomnienia w dniu, na który się zapisujesz.</div>';
+			
+			document.getElementById("main").innerHTML=formularz;
+			document.getElementById("topmenu").innerHTML=ktoryDzien;
+		}
+		
+		
+		
+		var counter=0;
+		function countF(){
+				if(counter>3){
+					counter=0;
+					window.location.href="logowanie.php";
+				
+				}
+				else counter++;
+		}
+	
+		
+	/*
+		
+	function zapisane(var day){
+				
+								
 					if (window.XMLHttpRequest) {
 						// code for IE7+, Firefox, Chrome, Opera, Safari
 						xmlhttp2 = new XMLHttpRequest();
@@ -75,14 +167,14 @@
 					}
 					xmlhttp2.onreadystatechange = function ()	{
 							if(this.readyState == 4 && this.status ==200)	{
-									document.getElementById("Error").innerHTML = this.responseText;
+									window.location.href="index.php";
 							}
 						};
 					
-					xmlhttp2.open("GET","panel_ZmienZW_wczytajDane.php?ParafiaDoZnalezienia="+parafia,true); //do zmiany
+					xmlhttp2.open("GET","zapis.php?ParafiaDoZnalezienia="+parafia,true); //do zmiany
 					xmlhttp2.send();
-			}
+			
 				
 		
-	}*/
-	
+	}
+	*/

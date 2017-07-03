@@ -1,11 +1,9 @@
 <?php
 	
-	$host="localhost";
-	$uzytkownik_bazy="root";
-	$haslo_uzytkownika="";
-	
-	$baza_logowania="users_base";
-	$baza="pompejanka";
+	$host="mysql.oaza.pl";
+	$uzytkownik_bazy="lb-nowenna";
+	$haslo_uzytkownika="84XkaiNlh58EeJ1F";
+	$baza="lb-nowenna";
 	
 ?>
 

@@ -105,13 +105,13 @@
 							else echo "Cos nie tak z wyszukiwaniem dnia.";
 							
 				
-				echo "</div><div>";
+				echo "</div>";
 				
 				if($_SESSION['brakMiesiaca']) echo "<div id='nowyMiesiac' onclick='ToOtwarcie()'>Nie utworzono jeszcze bierzącego miesiąca</div>";
 				
 			
 				if($_SESSION['brakKolejnegoMiesiaca'])echo "<br/><div id='nowyMiesiac' onclick='ToOtwarcie2()'>Utwórz kolejny miesiąc</div>";
-				echo "</div>";
+			
 				
 				$bazaDanych->close();		
 				?>

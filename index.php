@@ -22,7 +22,7 @@
 		else
 			{ 	
 					$_SESSION['brakMiesiaca']=false;
-					if($_SESSION['actualDay']>=20){
+					if($_SESSION['actualDay']>=15){
 						$kolejnyMies=$_SESSION['actualMonth']+1;
 						if( $wczytaneDane = $bazaDanych->query("SELECT * FROM zapisy WHERE dataMonth='".$_SESSION['actualMonth']."' OR dataMonth='".$kolejnyMies."' ") ){
 							if($wczytaneDane->num_rows==0){
@@ -100,7 +100,7 @@
 					echo '<div class="wiersz naglowek"> <div class="data" > Data </div><div class="imie"> Imię i nazwisko </div><div class="czesc">Część błagalna lub dziękczynna </div> <div class="endfloat"></div> </div>';
 					$numerPetli=1;
 					foreach ( $wczytaneDane as $kafelek){
-						if($_SESSION['actualDay']<20 OR ($_SESSION['actualDay']>=20 AND $numerPetli>=15)){
+						if($_SESSION['actualDay']<15 OR ($_SESSION['actualDay']>=15 AND $numerPetli>=10 AND $numerPetli<=55)){
 								$zeroDay="";
 								if( $kafelek['dataDay']<10) 	$zeroDay= "0";
 								if( $kafelek['dataMonth']<10) $kafelek['dataMonth']="0".$kafelek['dataMonth'];

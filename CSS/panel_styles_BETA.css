@@ -238,6 +238,16 @@
 				}
 				
 		/* Formularz */
+		
+				#firstPerson{
+					float:left;
+					width:50%;
+				}
+				#secondPerson{
+					float:left;
+					width:50%;
+				}
+				
 				.formularz{
 					text-align:center;
 					
@@ -261,6 +271,18 @@
 				}    
 				input[name=nazwisko] {    
 				width: 20%;
+				}   
+				input[name=imie1] {    
+				width: 50%;
+				}    
+				input[name=nazwisko1] {    
+				width: 50%;
+				}   
+				input[name=imie2] {    
+				width: 50%;
+				}    
+				input[name=nazwisko2] {    
+				width: 50%;
 				}   
 				input[name=email] {    
 				width: 20%;
@@ -294,6 +316,13 @@
 					text-align:center;
 				}
 				
+				.red{
+				color:red;
+				}
+				
+				.greenText{
+				color: #AD291F;
+				}
 				
 				
 				

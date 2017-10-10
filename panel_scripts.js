@@ -126,7 +126,7 @@
 		}
 		
 		function dajForm(id,daySign,monthSign,yearSign){
-			var formularz='<div class="formularz" >	<form action="zapisDoBazy.php" method="post" ><input class="hide" name="dataDay" type="number" value="'+daySign+'"/><input class="hide" name="dataMonth" type="number" value="'+monthSign+'"/><input class="hide" name="year" type="number" value="'+yearSign+'"/><input class="hide" name="id" type="number" value="'+id+'"/><div  class="nazwaPola FormFontsize">Imię:</div ><div  class="zawartosc"> <input  type="text" name="imie" /></div ><div class="nazwaPola FormFontsize">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko"   /></div ><div  class="nazwaPola FormFontsize">Email:</div ><div  class="zawartosc"> <input type="text" name="email"  /></div ><br/><input class="przycisk FormFontsize" type="submit" value="ZAPISZ MNIE" /> <br/><br/> <div class="przycisk FormFontsize przyciskGoHome" onclick="goHome()">Wróć do głównej strony</div> </form>	</div>';
+			var formularz='<div id="podziekowanie"></div><div class="formularz" >	<form action="zapisDoBazy.php" method="post" ><input class="hide" name="dataDay" type="number" value="'+daySign+'"/><input class="hide" name="dataMonth" type="number" value="'+monthSign+'"/><input class="hide" name="year" type="number" value="'+yearSign+'"/><input class="hide" name="id" type="number" value="'+id+'"/><div  class="nazwaPola FormFontsize">Imię:</div ><div  class="zawartosc"> <input  type="text" name="imie" /></div ><div class="nazwaPola FormFontsize">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko"   onchange="podziekowanie(this.value)"/></div ><div  class="nazwaPola FormFontsize">Email:</div ><div  class="zawartosc"> <input type="text" name="email"  /></div ><br/><input class="przycisk FormFontsize" type="submit" value="ZAPISZ MNIE" /> <br/><br/> <div class="przycisk FormFontsize przyciskGoHome" onclick="goHome()">Wróć do głównej strony</div> </form>	</div>';
 			
 			var zeroDay="";
 			//var zeroMonth="";
@@ -153,6 +153,24 @@
 		}
 	
 		
+		
+	function podziekowanie(nazwisko){
+		if (window.XMLHttpRequest) {
+						// code for IE7+, Firefox, Chrome, Opera, Safari
+						xmlhttp2 = new XMLHttpRequest();
+					} else {
+						// code for IE6, IE5
+						xmlhttp2 = new ActiveXObject("Microsoft.XMLHTTP");
+					}
+					xmlhttp2.onreadystatechange = function ()	{
+							if(this.readyState == 4 && this.status ==200)	{
+									document.getElementById("podziekowanie").innerHTML=this.responseText;
+							}
+						};
+					var imie=document.getElementsByName("imie");
+					xmlhttp2.open("GET","znajdzOsobe.php?nazwisko="+nazwisko+"&imie="+imie,true); //do zmiany
+					xmlhttp2.send();
+	}
 	/*
 		
 	function zapisane(var day){

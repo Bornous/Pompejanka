@@ -126,7 +126,7 @@
 		}
 		
 		function dajForm(id,daySign,monthSign,yearSign){
-			var formularz='<div id="podziekowanie"></div><div class="formularz" >	<form action="zapisDoBazy.php" method="post" ><input class="hide" name="dataDay" type="number" value="'+daySign+'"/><input class="hide" name="dataMonth" type="number" value="'+monthSign+'"/><input class="hide" name="year" type="number" value="'+yearSign+'"/><input class="hide" name="id" type="number" value="'+id+'"/><div  class="nazwaPola FormFontsize">Imię:</div ><div  class="zawartosc"> <input  type="text" name="imie" /></div ><div class="nazwaPola FormFontsize">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko"   onchange="podziekowanie(this.value)"/></div ><div  class="nazwaPola FormFontsize">Email:</div ><div  class="zawartosc"> <input type="text" name="email"  /></div ><br/><input class="przycisk FormFontsize" type="submit" value="ZAPISZ MNIE" /> <br/><br/> <div class="przycisk FormFontsize przyciskGoHome" onclick="goHome()">Wróć do głównej strony</div> </form>	</div>';
+			var formularz='<div id="podziekowanie" class="center"></div><div class="formularz" >	<form action="zapisDoBazy.php" method="post" ><input class="hide" name="dataDay" type="number" value="'+daySign+'"/><input class="hide" name="dataMonth" type="number" value="'+monthSign+'"/><input class="hide" name="year" type="number" value="'+yearSign+'"/><input class="hide" name="id" type="number" value="'+id+'"/><div id="firstPerson"></div><div id="onlyPerson"><div  class="nazwaPola FormFontsize">Imię:</div ><div  class="zawartosc"> <input  type="text" id="imieOsoby" name="imie" onchange="testNaDlugoscImienia(this.value)"/></div ><div id="errorImie" class="center"></div><div class="nazwaPola FormFontsize">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko"   onchange="podziekowanie(this.value), testNaDlugoscNazwiska(this.value)"/></div ><div id="errorNazwisko" class="center"></div></div><div id="secondPerson"></div><div class="endfloat"></div><div  class="nazwaPola FormFontsize">Email:</div ><div  class="zawartosc"> <input type="text" name="email"  /></div >Zaznacz, jeśli będziesz odmawiać z drugą osobą: <input name="isTwoPerson" type="checkbox" onchange="daj2Form()"/><br/><input class="przycisk FormFontsize" type="submit" value="ZAPISZ MNIE" /> <br/><br/> <div class="przycisk FormFontsize przyciskGoHome" onclick="goHome()">Wróć do głównej strony</div> </form>	</div>';
 			
 			var zeroDay="";
 			//var zeroMonth="";
@@ -139,7 +139,28 @@
 			document.getElementById("main").innerHTML=formularz;
 			document.getElementById("topmenu").innerHTML=ktoryDzien;
 		}
+		var isNotClickedSecondPreson=true;
 		
+		function daj2Form()
+		{
+				
+			if(isNotClickedSecondPreson){
+				var formularz='<div  class="nazwaPola FormFontsize">Imię:</div ><div  class="zawartosc"> <input  type="text" id="imie2Osoby" name="imie2" onchange="testNaDlugoscImienia2(this.value)"/></div ><div id="errorImie2" class="center"></div><div class="nazwaPola FormFontsize">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko2"   onchange="podziekowanie(this.value), testNaDlugoscNazwiska2(this.value)"/></div ><div id="errorNazwisko2" class="center"></div><div  class="nazwaPola FormFontsize">';
+				var formFirstPerson='<div  class="nazwaPola FormFontsize">Imię:</div ><div  class="zawartosc"> <input  type="text" id="imieOsoby" name="imie1" onchange="testNaDlugoscImienia(this.value)"/></div ><div id="errorImie" class="center"></div><div class="nazwaPola FormFontsize">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko1"   onchange="podziekowanie(this.value), testNaDlugoscNazwiska(this.value)"/></div ><div id="errorNazwisko" class="center"></div>';
+				document.getElementById("secondPerson").innerHTML=formularz;
+				document.getElementById("onlyPerson").innerHTML="";
+				document.getElementById("firstPerson").innerHTML=formFirstPerson;
+				isNotClickedSecondPreson=false;
+			}
+			else {
+				var formFirstPerson='<div  class="nazwaPola FormFontsize">Imię:</div ><div  class="zawartosc"> <input  type="text" id="imieOsoby" name="imie" onchange="testNaDlugoscImienia(this.value)"/></div ><div id="errorImie" class="center"></div><div class="nazwaPola FormFontsize">Nazwisko:</div ><div  class="zawartosc"> <input type="text" name="nazwisko"   onchange="podziekowanie(this.value), testNaDlugoscNazwiska(this.value)"/></div ><div id="errorNazwisko" class="center"></div>';
+				document.getElementById("secondPerson").innerHTML="";
+				document.getElementById("onlyPerson").innerHTML=formFirstPerson;
+				document.getElementById("firstPerson").innerHTML="";
+				isNotClickedSecondPreson=true;
+			}
+			
+		}		
 		
 		
 		var counter=0;
@@ -155,6 +176,7 @@
 		
 		
 	function podziekowanie(nazwisko){
+		var imie=document.getElementById("imieOsoby").value;
 		if (window.XMLHttpRequest) {
 						// code for IE7+, Firefox, Chrome, Opera, Safari
 						xmlhttp2 = new XMLHttpRequest();
@@ -167,10 +189,39 @@
 									document.getElementById("podziekowanie").innerHTML=this.responseText;
 							}
 						};
-					var imie=document.getElementsByName("imie");
+					
 					xmlhttp2.open("GET","znajdzOsobe.php?nazwisko="+nazwisko+"&imie="+imie,true); //do zmiany
 					xmlhttp2.send();
 	}
+	
+	function testNaDlugoscImienia(tekstDoSprawdzenia){
+		//document.getElementById("podziekowanie").innerHTML=document.getElementById("errorImie").innerHTML;
+		if(tekstDoSprawdzenia.length>16)	document.getElementById("errorImie").innerHTML="<p class='red'>Wpisane imie musi mieć mniej niż 16 znaków.<br>Ilość wpisanych znaków: "+tekstDoSprawdzenia.length+"</p> ";
+		else document.getElementById("errorImie").innerHTML="";
+		
+	}
+	
+	function testNaDlugoscNazwiska(tekstDoSprawdzenia){
+		//document.getElementById("podziekowanie").innerHTML=tekstDoSprawdzenia;
+		if(tekstDoSprawdzenia.length>20)document.getElementById("errorNazwisko").innerHTML="<p class='red'>Wpisane nazwisko musi mieć mniej niż 20 znaków.<br>Ilość wpisanych znaków: "+tekstDoSprawdzenia.length+"</p> ";
+		else document.getElementById("errorNazwisko").innerHTML="";
+	}
+	
+	function testNaDlugoscImienia2(tekstDoSprawdzenia){
+		//document.getElementById("podziekowanie").innerHTML=document.getElementById("errorImie").innerHTML;
+		if(tekstDoSprawdzenia.length>16)	document.getElementById("errorImie2").innerHTML="<p class='red'>Wpisane imie musi mieć mniej niż 16 znaków.<br>Ilość wpisanych znaków: "+tekstDoSprawdzenia.length+"</p> ";
+		else document.getElementById("errorImie2").innerHTML="";
+		
+	}
+	
+	function testNaDlugoscNazwiska2(tekstDoSprawdzenia){
+		//document.getElementById("podziekowanie").innerHTML=tekstDoSprawdzenia;
+		if(tekstDoSprawdzenia.length>20)document.getElementById("errorNazwisko2").innerHTML="<p class='red'>Wpisane nazwisko musi mieć mniej niż 20 znaków.<br>Ilość wpisanych znaków: "+tekstDoSprawdzenia.length+"</p> ";
+		else document.getElementById("errorNazwisko2").innerHTML="";
+	}
+
+
+
 	/*
 		
 	function zapisane(var day){
